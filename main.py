@@ -44,6 +44,28 @@ async def generate(interaction: nextcord.Interaction, url: str = SlashOption(des
         else:
             await interaction.send("Please include http:// or https:// in your URL")
 
+
+@url.subcommand(description="Unshorten a URL")
+async def unshorten(interaction: nextcord.Interaction, url: str = SlashOption(description="The URL to unshorten", required=True)):
+    if re.match(r".*[\'\"].*", url):
+        await interaction.send("You entered an invalid URL")
+    else:    
+        if url.startswith("http://") or url.startswith("https://"):
+            try:
+                unshortened_url = url_gen.unshorten(url)
+                await interaction.send(f"Unshortened URL: {unshortened_url}")
+            
+            except url_gen.InvalidURLError:
+                await interaction.send("You entered an invalid URL")
+            
+            except url_gen.RateLimitError:
+                await interaction.send("The URL shortener is currently rate limited. Please try again later.")
+            
+            except url_gen.UnknownError:
+                await interaction.send("An unknown error occurred. Please try again later.")
+        else:
+            await interaction.send("Please include http:// or https:// in your URL")
+
 if __name__ == "__main__":
     
     try:
