@@ -1,6 +1,6 @@
 import requests
 import qrcode
-import urllib
+import urllib.parse
 
 def shorten(url):
     encoded_url = urllib.parse.quote(url,safe=':/?&=')
@@ -41,6 +41,32 @@ def qr_code(url, background_color="white", fill_color="black"):
     img = qr.make_image(fill_color=fill_color, back_color=background_color)
     img.save("qr_code.png")
     return img
+
+def unshorten(url):
+    encoded_url = urllib.parse.quote(url,safe=':/?&=')
+    params = {
+        "shorturl": encoded_url,
+        "format": "json"
+    }
+    response = requests.get("https://is.gd/forward.php", params=params)
+    json = response.json()
+    
+    if "url" in json:
+        decoded_url = urllib.parse.unquote(json["url"])
+        return decoded_url
+    
+    elif json["errorcode"] == 1:
+        raise InvalidURLError
+    
+    elif json["errorcode"] == 3:
+        raise RateLimitError
+    
+    elif json["errorcode"] == 4:
+        raise UnknownError
+    
+    else:
+        raise UnknownError
+
 
 class InvalidURLError(Exception):
     pass
