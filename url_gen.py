@@ -66,9 +66,40 @@ def unshorten(url):
     
     else:
         raise UnknownError
+    
+def custom(url, custom_url):
+    encoded_url = urllib.parse.quote(url,safe=':/?&=')
+    params = {
+        "url": encoded_url,
+        "shorturl": custom_url,
+        "format": "json"
+    }
+    response = requests.get("https://is.gd/create.php", params=params)
+    json = response.json()
+    
+    if "shorturl" in json:
+        return json["shorturl"]
+    
+    elif json["errorcode"] == 1:
+        raise InvalidURLError
+    
+    elif json["errorcode"] == 2:
+        raise InvalidCustomURLError
+    
+    elif json["errorcode"] == 3:
+        raise RateLimitError
+    
+    elif json["errorcode"] == 4:
+        raise UnknownError
+    
+    else:
+        raise UnknownError
 
 
 class InvalidURLError(Exception):
+    pass
+
+class InvalidCustomURLError(Exception):
     pass
 
 class RateLimitError(Exception):
