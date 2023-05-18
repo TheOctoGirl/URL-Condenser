@@ -1,7 +1,8 @@
 # URL Condenser
 URL Condenser is a discord bot that allows you to shorten URLs using [is.gd](https://is.gd). URL Condenser also allows you to create custom URLs that redirect to other URLs. URL Condenser is written in Python and uses the [nextcord](https://github.com/nextcor/nextcord) and [qrcode](https://github.com/lincolnloop/python-qrcode) libraries.
 ## Screenshots
-![A discord bot replying with a link and a QR code](https://github.com/TheOctoGirl/URL-Condenser/assets/119755793/1515991d-4729-49a4-8ea4-dc98df6de9e0)
+![A discord bot replying with a link and a QR code]](https://github.com/TheOctoGirl/URL-Condenser/assets/119755793/8bbf88ae-5abc-4f20-bf0b-79a238a88140)
+
 
 ## Installation
 
