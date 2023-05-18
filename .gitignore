@@ -162,3 +162,4 @@ cython_debug/
 .DS_Store
 config.py
 qr_code.png
+.vscode/

@@ -1,3 +1,4 @@
-nextcord=2.42
-requests=2.29.0
-qrcode[pil]=7.4.2
+nextcord==2.4.2
+requests==2.29.0
+qrcode[pil]==7.4.2
+mariadb==1.1.6
