@@ -8,8 +8,8 @@ To invite the discord bot to your server click [here](https://discord.com/api/oa
 ### Self-hosted
 
 #### Requirements
-Python 3.10+
-MariaDB 10.6+
+* Python 3.10+
+* MariaDB 10.6+
 
 #### Steps
 1. Clone the repository
