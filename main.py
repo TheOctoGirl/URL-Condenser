@@ -99,6 +99,12 @@ if __name__ == "__main__":
     
     try:
         import config
-        bot.run(config.discord_api_key)
+        if config.discord_api_key == "DISCORD_API_KEY_HERE":
+            print("Please add your Discord API key to config.py")
+            quit()
+        else:    
+            bot.run(config.discord_api_key)
+    
     except ImportError:
         print("Please rename default_config.py to config.py and add your Discord API key.")
+        quit()
